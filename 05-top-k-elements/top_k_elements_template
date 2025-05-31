@@ -17,7 +17,6 @@ def top_k_frequent(arr, k):
             freq_arr[freq].append(num)
     
     
-    
     result = []
     for i in range(n, -1, -1):
         if freq_arr[i] != 0:
@@ -30,3 +29,27 @@ def top_k_frequent(arr, k):
 
 my_arr = [1,1,2,2,2,3,3,3,3]
 print(f"{top_k_frequent(my_arr,2)}")
+
+
+""" --------- Top-k Elements ---------"""
+# Q : Top k frequent elements (Heap / Min-Heap) 
+
+import heapq # min-heap
+
+def top_k_freq_elms(arr, k):
+    counter = Counter(arr)
+    heap = []
+    
+    for key,val in counter.items():
+        if len(heap) < k : # we want k items in heap
+            heapq.heappush(heap, (val, key))
+            
+        else: # heap is k things
+            heapq.heappushpop(heap, (val, key)) #push something and immediately pop 
+ 
+    return [h[1] for h in heap] # k things, h[1] = key as 1 is 2nd elm
+
+
+
+my_arr = [1,1,2,2,2,3,3,3,3,4,4,4,4,4]
+print(f"{top_k_freq_elms(my_arr, 2)}")
