@@ -30,6 +30,5 @@ def merge(intervals) -> list:
     # time : O(nlogn) , space : O(n)
     
 
-
 arr = [[2,6],[1,3],[8,10],[7,9]]
 print(f"{merge(arr)}")
